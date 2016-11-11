@@ -19,9 +19,10 @@ public class Example {
         series().subscribe(value -> System.out.print(", " + value));
     }
 
-    static Observable<Integer> series() {
-        return Observable.from(Arrays.asList(1, 2, 3));
+    static Observable<Long> series() {
+        return Observable.from(Arrays.asList(1l, 2l, 3l));
     }
+
 }
 
 interface TimerListner {
@@ -30,7 +31,7 @@ interface TimerListner {
 
 class Timer {
     final long interval;
-    AtomicReference<TimerListner> listenerRef;
+    AtomicReference<TimerListner> listenerRef = new AtomicReference<>();
 
     Timer(long interval) {
         this.interval = interval;
@@ -46,7 +47,7 @@ class Timer {
                     return;
                 }
             }
-        });
+        }).start();
     }
 
     void setListener(TimerListner listener) {
