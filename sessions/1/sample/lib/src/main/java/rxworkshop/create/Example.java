@@ -17,12 +17,32 @@ public class Example {
 
     public static void main(String ... args) {
         series().subscribe(value -> System.out.print(", " + value));
+        single().subscribe(value -> System.out.print(", " + value));
+        open().subscribe(value -> System.out.print(", " + value));
     }
 
     static Observable<Long> series() {
         return Observable.from(Arrays.asList(1l, 2l, 3l));
     }
 
+    static Observable<Long> single() {
+        return Observable.create(subscriber -> {
+            subscriber.onNext(System.currentTimeMillis());
+            subscriber.onCompleted();
+        });
+    }
+
+    static Observable<Long> open() {
+        return Observable.create(subscriber -> {
+            Timer timer = new Timer(1000);
+            timer.setListener(new TimerListner() {
+                @Override
+                public void onNewTime(long time) {
+                    subscriber.onNext(time);
+                }
+            });
+        });
+    }
 }
 
 interface TimerListner {
