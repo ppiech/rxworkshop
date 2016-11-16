@@ -1,0 +1,7 @@
+apply from: '../library.gradle'
+
+dependencies {
+    compile project(":android")
+    compile 'com.squareup.okhttp3:okhttp:3.3.0'
+}
+

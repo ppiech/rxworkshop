@@ -1,0 +1,18 @@
+apply from: '../library.gradle'
+
+apply plugin: 'com.jakewharton.butterknife'
+
+dependencies {
+    compile project(":core")
+    compile project(":android")
+
+    compile libraries.butterknife
+    apt libraries.butterknifeApt
+
+    compile libraries.support_v4
+    compile libraries.support_design
+    compile libraries.support_recyclerview
+
+    compile libraries.picasso
+}
+

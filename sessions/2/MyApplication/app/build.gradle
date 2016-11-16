@@ -1,0 +1,15 @@
+apply from: '../app.gradle'
+
+dependencies {
+    compile project(":ui")
+    compile project(":core")
+    compile project(":android")
+
+    compile libraries.retrofit
+    compile libraries.butterknife
+
+    compile libraries.support_v4
+    compile libraries.support_design
+    compile libraries.support_recyclerview
+
+}
