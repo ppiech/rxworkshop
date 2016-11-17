@@ -10,4 +10,7 @@
 
 Use following project: [Sample](sessions/1/sample) for the excercises.
 
+* [Solution for 1, 2] (f5fa1c75660ed239f8d23f274938b9ba373567ca)
+* [Solution for 3] (5d6fdbbe08bcc9722140432c43428f14fdff8fd1)
+
 ## Session 2: 
