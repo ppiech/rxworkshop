@@ -14,8 +14,8 @@ Use following project: [Sample](sessions/1/sample) for the excercises.
 
 * [Solution for 1, 2] (https://github.com/ppiech/rxworkshop/commit/f5fa1c75660ed239f8d23f274938b9ba373567ca)
 * [Solution for 3] (https://github.com/ppiech/rxworkshop/commit/5d6fdbbe08bcc9722140432c43428f14fdff8fd1)
-* [Solution for 5] (https://github.com/ppiech/rxworkshop/commit/5d6fdbbe08bcc9722140432c43428f14fdff8fd1)
-* [Solution for 6] (https://github.com/ppiech/rxworkshop/commit/5d6fdbbe08bcc9722140432c43428f14fdff8fd1)
+* [Solution for 5] (https://github.com/ppiech/rxworkshop/commit/0a24956908944286ec9e2409491c7bc2fa40043d)
+* [Solution for 6] (https://github.com/ppiech/rxworkshop/commit/228c3d7b1200c114fb8176144e05db338f8ce8a5)
 
 ## Session 2: State feedback pattern
 For background, see video: https://skillsmatter.com/skillscasts/8678-making-fully-reactive-apps-using-advanced-rxjava.
