@@ -5,6 +5,7 @@ import rx.Observable;
 import rx.Subscription;
 import rx.functions.Action0;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.Subscriptions;
 
 import java.util.Arrays;
@@ -23,15 +24,22 @@ public class Example {
 
     public static void main(String ... args) {
         Subscription s = open()
-            .take(4)
-            .subscribe(value -> System.out.print(", " + value/100%1000));
+            .observeOn(Schedulers.io(), 10)
+            .subscribe(value -> {
+                System.out.print(", " + value/10%100);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                }
 
-        try {
-            Thread.sleep(800);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        s.unsubscribe();
+            });
+
+//        try {
+//            Thread.sleep(800);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        s.unsubscribe();
     }
 
     static Observable<Long> open() {
@@ -40,7 +48,7 @@ public class Example {
 
             @Override
             public void call(AsyncEmitter<Long> longAsyncEmitter) {
-                Timer timer = new Timer(500);
+                Timer timer = new Timer(10);
 
                 TimerListner listner = new TimerListner() {
                     @Override
@@ -58,14 +66,6 @@ public class Example {
                     }
                 };
                 longAsyncEmitter.setCancellation(cancellable);
-
-//                Subscription cancelSubscription = Subscriptions.create(new Action0() {
-//                    @Override
-//                    public void call() {
-//                        timer.clearListener();
-//                    }
-//                });
-//                longAsyncEmitter.setSubscription(cancelSubscription);
             }
         };
 
