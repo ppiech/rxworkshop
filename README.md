@@ -7,7 +7,7 @@ Exercise:
 2. Implement observable that keeps emitting time using the Timer class below.
 3. Use exmaple with observeOn() and a short interval to trigger a MissingBackpressureException
 4. Convert 1, to use fromCallable().
-5. Convert 2, to use fromEmittable().
+5. Convert 2, to use fromEmitter().
 6. Repteat 3 with fromEmittable();
 
 Use following project: [Sample](sessions/1/sample) for the excercises.
