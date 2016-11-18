@@ -1,8 +1,14 @@
 package rxworkshop.create;
 
+import rx.AsyncEmitter;
 import rx.Observable;
+import rx.Subscription;
+import rx.functions.Action0;
+import rx.functions.Action1;
+import rx.subscriptions.Subscriptions;
 
 import java.util.Arrays;
+import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicReference;
 
 
@@ -16,32 +22,54 @@ import java.util.concurrent.atomic.AtomicReference;
 public class Example {
 
     public static void main(String ... args) {
-        series().subscribe(value -> System.out.print(", " + value));
-        single().subscribe(value -> System.out.print(", " + value));
-        open().subscribe(value -> System.out.print(", " + value));
-    }
+        Subscription s = open()
+            .take(4)
+            .subscribe(value -> System.out.print(", " + value/100%1000));
 
-    static Observable<Long> series() {
-        return Observable.from(Arrays.asList(1l, 2l, 3l));
-    }
-
-    static Observable<Long> single() {
-        return Observable.create(subscriber -> {
-            subscriber.onNext(System.currentTimeMillis());
-            subscriber.onCompleted();
-        });
+        try {
+            Thread.sleep(800);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        s.unsubscribe();
     }
 
     static Observable<Long> open() {
-        return Observable.create(subscriber -> {
-            Timer timer = new Timer(1000);
-            timer.setListener(new TimerListner() {
-                @Override
-                public void onNewTime(long time) {
-                    subscriber.onNext(time);
-                }
-            });
-        });
+
+        Action1<AsyncEmitter<Long>> action = new Action1<AsyncEmitter<Long>>() {
+
+            @Override
+            public void call(AsyncEmitter<Long> longAsyncEmitter) {
+                Timer timer = new Timer(500);
+
+                TimerListner listner = new TimerListner() {
+                    @Override
+                    public void onNewTime(long time) {
+                        longAsyncEmitter.onNext(time);
+                    }
+                };
+
+                timer.setListener(listner);
+
+                AsyncEmitter.Cancellable cancellable = new AsyncEmitter.Cancellable() {
+                    @Override
+                    public void cancel() throws Exception {
+                        timer.clearListener();
+                    }
+                };
+                longAsyncEmitter.setCancellation(cancellable);
+
+//                Subscription cancelSubscription = Subscriptions.create(new Action0() {
+//                    @Override
+//                    public void call() {
+//                        timer.clearListener();
+//                    }
+//                });
+//                longAsyncEmitter.setSubscription(cancelSubscription);
+            }
+        };
+
+        return Observable.fromEmitter(action, AsyncEmitter.BackpressureMode.DROP);
     }
 }
 
@@ -55,12 +83,13 @@ class Timer {
 
     Timer(long interval) {
         this.interval = interval;
+    }
+
+    void setListener(TimerListner listener) {
+        listenerRef.set(listener);
         new Thread(() -> {
-            while (true) {
-                TimerListner listener = listenerRef.get();
-                if (listener != null) {
-                    listener.onNewTime(System.currentTimeMillis());
-                }
+            while (listenerRef.get() != null) {
+                listener.onNewTime(System.currentTimeMillis());
                 try {
                     Thread.sleep(interval);
                 } catch (InterruptedException e) {
@@ -68,10 +97,6 @@ class Timer {
                 }
             }
         }).start();
-    }
-
-    void setListener(TimerListner listener) {
-        listenerRef.set(listener);
     }
 
     void clearListener() {
