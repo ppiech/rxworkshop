@@ -25,6 +25,7 @@ Exercise: Convert the SearchPresenter to use a BehaviorSubject that holds the it
 Use following project: [MyApplication](sessions/2/MyApplication) for the excercises.
 
 ## Session 3: map, flatMap, switchMap, concatMap
+Use differnt variants of transformation operators to manipulate data streams
 
 # Session ideas
 * Connectable observables
