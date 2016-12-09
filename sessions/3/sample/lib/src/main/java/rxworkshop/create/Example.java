@@ -13,7 +13,8 @@ import java.util.concurrent.atomic.AtomicReference;
 // Exercise 3: Take the series from numbers() and flatMap them to series emitted by letter(),
 //   concatenating the two so that you get output of: "1-a, 1-b, 1-c, ...etc."
 // Exercise 4: In excercise above change flatMap to switchMap
-// Exercise 5: Create an observable that wraps calls to CallbackApi using create() operator,
+// Exercise 5: In excercise above change flatMap to concatMap
+// Exercise 6: Create an observable that wraps calls to CallbackApi using create() operator,
 //   take series from numbers() and then apply square and squareRoot operations to them
 //   using flatMap().
 
