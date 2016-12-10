@@ -40,7 +40,7 @@ public class SeachRemote implements Search {
             .addQueryParameter("srlimit", Integer.toString(limit))
             .build();
 
-        Log.i("MyApplication", "requesting: " + url);
+        //Log.i("MyApplication", "requesting: " + url);
 
         Request request = new Request.Builder()
             .url(url)

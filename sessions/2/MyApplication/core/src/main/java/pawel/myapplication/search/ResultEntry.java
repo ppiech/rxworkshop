@@ -13,4 +13,9 @@ abstract public class ResultEntry {
 
     abstract public String value();
     abstract public @Nullable String imageUrl();
+
+    @Override
+    public String toString() {
+        return value();
+    }
 }
