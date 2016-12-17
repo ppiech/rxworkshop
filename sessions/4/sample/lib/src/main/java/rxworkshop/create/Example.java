@@ -14,9 +14,9 @@ public class Example {
 
     public static void main(String ... args) {
 
-        withRetry();
+        //withRetry();
 
-        //withFlatMap();
+        withFlatMap();
 
         try {
             Thread.sleep(10000);
@@ -54,4 +54,24 @@ public class Example {
                 System.out.println("Subscriber "+s);
             });
     }
+
+    static void withFlatMap() {
+        Observable
+            .interval(0, 500, TimeUnit.MILLISECONDS)
+            .observeOn(Schedulers.newThread())
+            .concatMap(tryNum -> {
+                System.out.println("in flatmap, in: " + Thread.currentThread());
+                return threeTimesACharm()
+                    .subscribeOn(Schedulers.newThread())
+                    .onErrorResumeNext(exception ->
+                        tryNum > 3 ? Observable.error(exception) : Observable.empty());
+                }
+            )
+            .take(1)
+            .subscribeOn(Schedulers.computation())
+            .subscribe(s -> {
+                System.out.println("Subscriber "+s);
+            });;
+    }
+
 }
