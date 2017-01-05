@@ -27,6 +27,9 @@ Use following project: [MyApplication](sessions/2/MyApplication) for the excerci
 ## Session 3: map, flatMap, switchMap, concatMap
 Use differnt variants of transformation operators to manipulate data streams
 
+## Session 4: retryWhen
+retryWhen operator allows a caller to specify how many times to retry subscribing to a stream upon error, and what to do when retries fail.  As an excercise implement retryWhen logic using a flatMap operator
+
 # Session ideas
 * Connectable observables
 * Observable.combineLatest()
