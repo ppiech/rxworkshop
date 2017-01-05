@@ -30,6 +30,8 @@ Use differnt variants of transformation operators to manipulate data streams
 ## Session 4: retryWhen
 retryWhen operator allows a caller to specify how many times to retry subscribing to a stream upon error, and what to do when retries fail.  As an excercise implement retryWhen logic using a flatMap operator
 
+[Solution] (https://github.com/ppiech/rxworkshop/commit/f4a11085fd2d6b2eb208fb4f6cc9ab40ecc5a0dc)
+
 # Session ideas
 * Connectable observables
 * Observable.combineLatest()
