@@ -17,6 +17,15 @@ public class Example {
 
     public static void main(String ... args) {
         series().subscribe(value -> System.out.print(", " + value));
+
+        // TODO: start work here
+
+
+        // Keep the main thread alive to avoid killing our process
+        try {
+               Thread.sleep(10000);
+            } catch (InterruptedException e) {
+        }
     }
 
     static Observable<Long> series() {
