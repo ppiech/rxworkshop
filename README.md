@@ -3,12 +3,14 @@
 ## Session 1: Obsevable.create()
 Exercise:
 
-1. Use Obsevable.create() to make an obsevable that returns  current time (System.currentTimeMillis()).
+1. Use Obsevable.create() to make an observable that returns  current time (System.currentTimeMillis()).
 2. Implement observable that keeps emitting time using the Timer class below.
-3. Use exmaple with observeOn() and a short interval to trigger a MissingBackpressureException
-4. Convert 1, to use fromCallable().
-5. Convert 2, to use fromEmitter().
-6. Repteat 3 with fromEmittable();
+ * What happens if subscriber only "takes" 10 itmes, does timer thread keep producing?
+ * What if producer produces much faster than the consumer, what happens to the produced values.
+3. Convert observable to Flowable.
+ * Try different backpressure strategies
+ * If you buffer, how long till buffer overflows?
+ * If you drop, can you detect when dripping starts?
 
 Use following project: [Sample](sessions/1/sample) for the excercises.
 
@@ -35,11 +37,10 @@ retryWhen operator allows a caller to specify how many times to retry subscribin
 # Session ideas
 * Connectable observables
 * Observable.combineLatest()
-* Subjects antipatterns (http://tomstechnicalblog.blogspot.com/2016/03/rxjava-problem-with-subjects.html) 
+* Subjects antipatterns (http://tomstechnicalblog.blogspot.com/2016/03/rxjava-problem-with-subjects.html)
 * doOnNext()
 * Operators that are not compatible with hot observables: reduce(), max(), etc.
 * Rxjava 2
 * Writing Tests
-* Practical work-related examples: 
+* Practical work-related examples:
  * need specifics
-
