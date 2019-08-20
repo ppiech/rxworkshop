@@ -66,7 +66,7 @@ object Example {
         return Observable.fromIterable(listOf(1L, 2L, 3L))
     }
 
-//    internal fun series(): Observable<Long> {
+    //    internal fun series(): Observable<Long> {
 //        return Observable.create<Long> { emitter ->
 //            val timer = Timer(10)
 //            timer.setListener(object : TimerListner {
@@ -93,7 +93,6 @@ object Example {
 //            },
 //            BackpressureStrategy.DROP)
 //    }
-
-
+    
 }
 
