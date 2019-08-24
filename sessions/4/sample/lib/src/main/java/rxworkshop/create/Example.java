@@ -1,13 +1,11 @@
 package rxworkshop.create;
 
-import rx.Observable;
-import rx.schedulers.Schedulers;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.atomic.AtomicReference;
+
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class Example {
@@ -49,7 +47,7 @@ public class Example {
                 .delay(500, TimeUnit.MILLISECONDS, Schedulers.io())
                 .take(3))
             .subscribeOn(Schedulers.io())
-            .doOnCompleted(() -> System.out.println("Compl"))
+            .doOnComplete(() -> System.out.println("Compl"))
             .subscribe(s -> {
                 System.out.println("Subscriber "+s);
             });

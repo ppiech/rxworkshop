@@ -1,10 +1,11 @@
 package rxworkshop.create;
 
-import rx.Observable;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+
+import io.reactivex.Observable;
 
 
 // Exercise 1: Take series of numbers from series() and apply a simple math function on them
@@ -25,7 +26,7 @@ public class Example {
     }
 
     static Observable<Long> series() {
-        return Observable.from(Arrays.asList(1l, 2l, 3l));
+        return Observable.fromIterable(Arrays.asList(1l, 2l, 3l));
     }
 
     static Observable<Long> delayed() {
