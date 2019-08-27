@@ -7,7 +7,7 @@ dependencies {
     compile project(":android")
 
     compile libraries.butterknife
-    apt libraries.butterknifeApt
+    annotationProcessor libraries.butterknifeApt
 
     compile libraries.support_v4
     compile libraries.support_design
