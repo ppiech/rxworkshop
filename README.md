@@ -20,19 +20,32 @@ Use following project: [Sample](sessions/1/sample) for the excercises.
 * [Solution for 6] (https://github.com/ppiech/rxworkshop/commit/228c3d7b1200c114fb8176144e05db338f8ce8a5)
 
 ## Session 2: State feedback pattern
-For background, see video: https://skillsmatter.com/skillscasts/8678-making-fully-reactive-apps-using-advanced-rxjava.
+Use following project: [MyApplication](sessions/2/MyKotlinApplication) for the excercises.
 
-Exercise: Convert the SearchPresenter to use a BehaviorSubject that holds the item list: i.e. the view state.
+* Handling of input: debounce
+ * excercise: remove debounce observe requests to service
+* cache() to void re-fetching on re-subscriber
+ * excercise: remove cache, try rotating screen, and observe requests to server
+* viewModel/liveData
+* progress tracking
+ * excercise: use doOnNext instead
+* pagination
+ * scan operator
+ * break up the chain
+* testability
+ * excercise: write tests for viewModel
 
-Use following project: [MyApplication](sessions/2/MyApplication) for the excercises.
 
 ## Session 3: map, flatMap, switchMap, concatMap
-Use differnt variants of transformation operators to manipulate data streams
+Use different variants of transformation operators to manipulate data streams
 
 ## Session 4: retryWhen
-retryWhen operator allows a caller to specify how many times to retry subscribing to a stream upon error, and what to do when retries fail.  As an excercise implement retryWhen logic using a flatMap operator
+retryWhen operator allows a caller to specify how many times to retry subscribing to a stream upon error, and what to do when retries fail.  
 
-[Solution] (https://github.com/ppiech/rxworkshop/commit/f4a11085fd2d6b2eb208fb4f6cc9ab40ecc5a0dc)
+* As an excercise implement retryWhen logic using a flatMap operator
+ * [Solution] (https://github.com/ppiech/rxworkshop/commit/f4a11085fd2d6b2eb208fb4f6cc9ab40ecc5a0dc)
+* Implement a retry with exponential backoff
+* Implement a retry with constant backoff and a fixed timeout
 
 # Session ideas
 * Connectable observables
