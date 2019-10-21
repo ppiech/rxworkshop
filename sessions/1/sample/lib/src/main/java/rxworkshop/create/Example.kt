@@ -58,6 +58,8 @@ object Example {
                 }
 
                 print(", " + value!! % 1000)
+
+                Thread.sleep(100_000)
             }
     }
 
