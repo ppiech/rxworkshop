@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 import io.reactivex.Observable;
-import io.reactivex.Single;
 
 
 // Exercise 1: Take series of numbers from series() and apply a simple math function on them
@@ -23,29 +22,11 @@ import io.reactivex.Single;
 public class Example {
 
     public static void main(String ... args) {
-//        Observable.combineLatest(
-//            numbers(),
-//            letters(),
-//            (number, letter) -> "" + number + "-" + letter)
-//            .zipWith(letters(), (number, letter) -> "" + number + "-" + letter)
-        numbers()
-            .concatMap(value ->
-                letters().take(3)
-                    .map(letter -> "" + value + "-" + letter))
-            .subscribe(value -> System.out.print(", " + value));
-
-        try {
-            Thread.sleep(100_000);
-        } catch (InterruptedException e) {
-        }
+        series().subscribe(value -> System.out.print(", " + value));
     }
 
     static Observable<Long> series() {
         return Observable.fromIterable(Arrays.asList(1l, 2l, 3l));
-    }
-
-    static Single<Long> single() {
-        return Single.just(1L);
     }
 
     static Observable<Long> delayed() {
