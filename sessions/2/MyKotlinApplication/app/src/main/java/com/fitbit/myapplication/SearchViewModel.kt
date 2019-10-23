@@ -60,8 +60,9 @@ class SearchViewModel(private val search: Search = Search()) : ViewModel() {
         LiveDataReactiveStreams.fromPublisher(
             Observable
                 .merge(
+                    pagingSubject.map { true },
                     inputSubject.map { true },
-                    searchResults.map {false })
+                    searchResults.map { false })
                 .toFlowable(BackpressureStrategy.LATEST)
         )
     }

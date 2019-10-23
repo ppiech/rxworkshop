@@ -50,32 +50,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.results.observe(this, Observer {  resultsAdater.setResultEntries(it) })
         viewModel.inProgress.observe(this, Observer {
-            //resultsAdater.showProgress(it)
-            showProgress(it)
+            resultsAdater.showProgress(it)
         })
-    }
-
-    fun showProgress(visible: Boolean) {
-        if (visible) {
-            progress.setVisibility(View.VISIBLE)
-            results.setVisibility(View.GONE)
-        } else {
-            results.setVisibility(View.VISIBLE)
-            progress
-                .animate()
-                .alpha(0f)
-                .setListener(object : Animator.AnimatorListener {
-                    override fun onAnimationStart(animation: Animator) {}
-                    override fun onAnimationEnd(animation: Animator) {
-                        progress.setVisibility(View.GONE)
-                        progress.setAlpha(1f)
-                    }
-
-                    override fun onAnimationCancel(animation: Animator) {}
-                    override fun onAnimationRepeat(animation: Animator) {}
-                })
-                .start()
-        }
     }
 
 }
